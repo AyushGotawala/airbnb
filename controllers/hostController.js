@@ -1,5 +1,8 @@
 const Favourite = require("../Models/favourite");
 const Home = require("../Models/home");
+const fs = require("fs");
+const path = require("path");
+const routePath = require("../utils/pathUtils");
 
 const getIndex = (req,res,next) => {
     Home.find().then((registeredHomes) =>{
@@ -33,10 +36,22 @@ const getEditHome = (req,res,next) =>{
     });
 }
 
-const postEditHome = (req,res,next) =>{
+const postEditHome = async (req,res,next) =>{
     const {id,homeName,location,price,rating,description} = req.body;
-    // console.log(id,homeName,location,price,rating,photo,description);
-    // const home = new Home({homeName,location,price,rating,photo,description});
+    if(req.file){
+        let hm;
+        Home.findById(id).then((home)=>{
+            hm = home.photo;
+            const oldimagePath = path.join(routePath,hm);
+            fs.unlink(oldimagePath,(err)=>{
+                if(err){
+                    console.log("Old image Not Found");
+                }else{
+                    console.log("Old image Deleted");
+                }
+            });
+        });
+    }
     Home.findById(id).then((home)=>{
         home.homeName = homeName;
         home.location = location;
@@ -68,6 +83,19 @@ const postAddHome = (req,res,next)=>{
 
 const postDeleteHome = (req,res,next) =>{
     const homeId = req.params.homeId;
+    
+    Home.findById(homeId).then((home)=>{
+        hm = home.photo;
+        const oldimagePath = path.join(routePath,hm);
+        fs.unlink(oldimagePath,(err)=>{
+            if(err){
+                console.log("Image Not Found");
+            }else{
+                console.log("image Deleted");
+            }
+        });
+    });
+
     Home.findByIdAndDelete(homeId).then(()=>{
         Favourite.findOneAndDelete({homeID : homeId}).then()
         .catch(err=>{
