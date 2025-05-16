@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const mongoURL = "mongodb://localhost:27017/airbnb";
-
+const multer = require('multer');
 // Set view engine
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -23,6 +23,9 @@ const errorsControler = require("./controllers/errors");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
+app.use(multer().single('photo'));
+// Serve static files BEFORE any routes
+app.use(express.static(path.join(routePath, 'public')));
 const store = new MongoDBStore({
     uri : mongoURL,
     collection : 'session'
@@ -34,9 +37,6 @@ app.use(session({
     store : store
 }));
 // app.use(cookieParser());
-
-// Serve static files BEFORE any routes
-app.use(express.static(path.join(routePath, 'public')));
 
 // Routes
 app.use(authRouter);
