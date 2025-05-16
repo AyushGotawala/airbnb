@@ -29,7 +29,7 @@
 
           <div class="form-group file-upload-group">
             <label for="photo" class="file-upload-label">Upload a Photo</label>
-            <input type="file" id="photo" name="photo" class="file-upload-input" accept=".jpg, .jpeg, .png" required />
+            <input type="file" id="photo" name="photo" class="file-upload-input" accept=".jpg, .jpeg, .png" <%= editing ? '' : 'required' %>  />
           </div>
 
           <div class="form-group">

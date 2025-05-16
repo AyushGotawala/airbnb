@@ -23,9 +23,21 @@ const errorsControler = require("./controllers/errors");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(multer().single('photo'));
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'Uploads/');
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname); // Preserve extension
+    cb(null, file.fieldname + '-' + Date.now() + ext);
+  }
+});
+
+const upload = multer({ storage });
+app.use(upload.single('photo'));
 // Serve static files BEFORE any routes
 app.use(express.static(path.join(routePath, 'public')));
+app.use('/Uploads', express.static(path.join(routePath, 'Uploads')));
 const store = new MongoDBStore({
     uri : mongoURL,
     collection : 'session'

@@ -34,15 +34,15 @@ const getEditHome = (req,res,next) =>{
 }
 
 const postEditHome = (req,res,next) =>{
-    const {id,homeName,location,price,rating,photo,description} = req.body;
-    console.log(id,homeName,location,price,rating,photo,description);
+    const {id,homeName,location,price,rating,description} = req.body;
+    // console.log(id,homeName,location,price,rating,photo,description);
     // const home = new Home({homeName,location,price,rating,photo,description});
     Home.findById(id).then((home)=>{
         home.homeName = homeName;
         home.location = location;
         home.price = price;
         home.rating = rating;
-        home.photo = photo;
+        home.photo = !req.file ? home.photo : req.file.path;
         home.description = description;
         home.save().then().catch(err=>{
             console.log(err);
@@ -55,14 +55,15 @@ const postEditHome = (req,res,next) =>{
 }
 
 const postAddHome = (req,res,next)=>{
-    // const {homeName,location,price,rating,photo,description} = req.body;
-    console.log(req.body);
-    console.log(req.file);
-    // const home = new Home({homeName,price,location,rating,photo,description});
-    // home.save().then().catch(err=>{
-    //     console.log(err);
-    // });
-    // res.redirect('/adminHomeList');
+    const {homeName,location,price,rating,description} = req.body;
+    // console.log(req.body);
+    // console.log(req.file);
+    const photo = req.file.path;
+    const home = new Home({homeName,price,location,rating,photo,description});
+    home.save().then().catch(err=>{
+        console.log(err);
+    });
+    res.redirect('/adminHomeList');
 }
 
 const postDeleteHome = (req,res,next) =>{
