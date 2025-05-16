@@ -27,9 +27,9 @@
             <input type="text" id="rating" name="rating" placeholder="rating" value="<%= editing ? home.rating : '' %>" required />
           </div>
 
-          <div class="form-group">
-            <!-- <label for="photoUrl">photo url</label> -->
-            <input type="text" id="photourl" name="photoUrl" placeholder="photoUrl" value="<%= editing ? home.photoUrl : ''  %>" required />
+          <div class="form-group file-upload-group">
+            <label for="photourl" class="file-upload-label">Upload a Photo</label>
+            <input type="file" id="photourl" name="photoUrl" class="file-upload-input" required />
           </div>
 
           <div class="form-group">

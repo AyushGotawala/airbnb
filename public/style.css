@@ -439,3 +439,32 @@
 .btn-danger:hover {
   background-color: #c0392b;
 }
+
+.file-upload-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.file-upload-label {
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+}
+
+.file-upload-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.file-upload-input:hover,
+.file-upload-input:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
