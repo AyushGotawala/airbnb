@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Airbnb </title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background"></div>
+  <%- include('../partials/errors') %>
+  <div class="login-container">
+    <form action="/Login" method="post" class="login-form" id="loginForm">
+      <h2>Welcome Back</h2>
+      <p>Login to your account</p>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<%= typeof oldInput.email !== 'undefined' ? oldInput.email : '' %>" required placeholder="you@example.com" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" name="password" id="password" required />
+          <span class="toggle-password" id="togglePassword">&#128065;</span>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <label><input type="checkbox" /> Remember Me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <p class="signup-text">Don't have an account? <a href="/SignUp">Sign up</a></p>
+    </form>
+  </div>
+
+  <!-- ✅ Move the script here -->
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+  });
+
+  // // Form Validation
+  // const form = document.getElementById('loginForm');
+  // const emailInput = document.getElementById('email');
+
+  // form.addEventListener('submit', function (e) {
+  //   const email = emailInput.value.trim();
+  //   const password = passwordInput.value.trim();
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  //   let errorMessages = [];
+
+  //   if (!emailRegex.test(email)) {
+  //     errorMessages.push("Please enter a valid email address.");
+  //   }
+
+  //   if (password.length < 6) {
+  //     errorMessages.push("Password must be at least 6 characters.");
+  //   }
+
+  //   if (errorMessages.length > 0) {
+  //     e.preventDefault(); // Stop form from submitting
+  //     alert(errorMessages.join('\n'));
+  //   }
+  // });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="home-details-container">
+      <img src="/<%= home.photoUrl %>" alt="Home Image" class="home-image" />
+
+      <div class="home-info">
+        <h1><%= home.homeName %></h1>
+        <p><span class="label">Description:</span> <%= home.description %></p>
+        <p><span class="label">Location:</span> <%= home.location %></p>
+        <p><span class="label">Price:</span> ₹<%= home.price %> / Night</p>
+        <p><span class="label"><strong>Rating:</strong> <%= home.rating %>⭐</p>
+      </div>
+
+      <div class="highlight-box">
+        <h3>✨ Highlights</h3>
+        <div class="highlights">
+          <div class="highlight">📶 Free Wi-Fi</div>
+          <div class="highlight">🍳 Kitchen Access</div>
+          <div class="highlight">🛏️ Comfortable Beds</div>
+          <div class="highlight">🌿 Private Garden</div>
+          <div class="highlight">🚿 Hot Water</div>
+          <div class="highlight">📺 Smart TV</div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <!-- <form action="/book/<%= home._id %>" method="POST" style="display: inline;">
+        <button type="submit" class="book-button">Book Now</button>
+      </form> -->
+
+      <!-- Favourite Form -->
+      <%- include('../partials/favourite' , {home : home}) %>
+    </div>    
+</body>

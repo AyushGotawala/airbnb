@@ -1,0 +1,51 @@
+  .confirmation-box {
+    background-color: #ffffff;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+  }
+
+  .confirmation-box h1 {
+    font-size: 1.8rem;
+    color: #2e7d32;
+    margin-bottom: 1rem;
+  }
+
+  .confirmation-box p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .confirmation-box a {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .confirmation-box a:hover {
+    background-color: #0056b3;
+  }
+
+  .auth-btn {
+  /* display: inline-block; */
+  padding: 10px 20px;
+  background-color: #4f46e5; /* Indigo-600 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #4338ca; /* Indigo-700 */
+}

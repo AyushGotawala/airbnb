@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Airbnb</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #f2f2f2;
+    }
+
+    .background {
+      background-image: url('https://source.unsplash.com/1600x900/?travel,airbnb');
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px);
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .login-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .login-form {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      color: #333;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .login-form h2 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .login-form p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      font-size: 14px;
+      margin-bottom: 5px;
+      display: block;
+      color: #333;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #222;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #888;
+    }
+
+    .input-group input::placeholder {
+      color: #999;
+    }
+
+    .password-wrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      transform: scale(1.1);
+    }
+
+    .checkbox-group a {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #FF5A5F;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #e14c4c;
+    }
+
+    .signup-text {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .signup-text a {
+      color: #0066cc;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .error-box {
+      background: rgba(255, 100, 100, 0.9);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: 0px auto;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <%- include('../partials/errors') %>
+  <div class="login-container">
+    <form action="/Signup" method="post" class="login-form" id="signupForm">
+      <h2>Create Account</h2>
+      <p>Sign up to get started</p>
+
+      <div class="input-group">
+        <label for="fName">First Name</label>
+        <input type="text" name="firstName" id="firstName" value="<%= typeof oldInput.firstName !== 'undefined' ? oldInput.firstName : '' %>" autocomplete="off" required />
+      </div>
+
+      <div class="input-group">
+        <label for="lName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" value="<%= typeof oldInput.lastName !== 'undefined' ? oldInput.lastName : '' %>" autocomplete="off" required />
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<%= typeof oldInput.email !== 'undefined' ? oldInput.email : '' %>" autocomplete="off" required placeholder="you@example.com" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" name="password" id="password" autocomplete="off" required />
+          <span class="toggle-password" id="togglePassword">&#128065;</span>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="password-wrapper">
+          <input type="password" name="confirmPassword" id="confirmPassword" autocomplete="off" required />
+          <span class="toggle-password" id="toggleConfirmPassword">&#128065;</span>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="termsCheckbox" name="termsCheckbox" />
+        <label for="termsCheckbox">I agree to the <a href="/terms" target="_blank">Terms & Conditions</a></label>
+      </div>
+
+      <button type="submit">Sign Up</button>
+
+      <p class="signup-text">Already have an account? <a href="/Login">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+    const togglePassword = document.getElementById('togglePassword');
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
+    togglePassword.addEventListener('click', () => {
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordField.setAttribute('type', type);
+      togglePassword.textContent = type === 'text' ? '🙈' : '👁️';
+    });
+
+    toggleConfirmPassword.addEventListener('click', () => {
+      const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      confirmPasswordField.setAttribute('type', type);
+      toggleConfirmPassword.textContent = type === 'text' ? '🙈' : '👁️';
+    });
+
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', function (e) {
+      const password = passwordField.value;
+      const confirmPassword = confirmPasswordField.value;
+      const termsChecked = document.getElementById('termsCheckbox').checked;
+
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+      } else if (!termsChecked) {
+        e.preventDefault();
+        alert('Please accept the Terms & Conditions to proceed.');
+      }
+    });
+  </script>
+</body>
+</html>

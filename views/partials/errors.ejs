@@ -1,0 +1,7 @@
+<% if (errorMessage && errorMessage.length > 0) { %>
+    <div class="error-box">
+      <% errorMessage.forEach(error => { %>
+        <p><%= error %></p>
+      <% }); %>
+    </div>
+  <% } %>

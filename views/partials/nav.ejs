@@ -1,0 +1,25 @@
+  <nav>
+    <div class="logo">Airbnb</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <% if(isLoggedIn) { %>
+      <a href="/">Home</a>
+      <a href="/homeList">Home List</a>
+      <a href="/bookings">Bookings</a>
+      <a href="/Fav-List">Fav-List</a>
+      <% } %>
+      <a href="/<%= isLoggedIn === true ? 'Logout' : 'Login' %>"><%= isLoggedIn === true ? 'Logout' : 'Login' %> </a>
+    
+    </div>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("show");
+    }
+  </script>

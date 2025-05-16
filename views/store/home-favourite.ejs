@@ -1,0 +1,26 @@
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+        <h1 style="text-align: center;margin-bottom:30px ;">Fav-List</h1>
+        <div class="card-container">
+            <% favHomes.forEach(home => { %>
+                <div class="card">
+                    <img src="<%= home.photoUrl %>" class="card-img" alt="Home Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= home.homeName %></h5>
+                        <p class="card-description"><%= home.description %></p>
+                        <p class="card-location"><strong>Location:</strong> <%= home.location %></p>
+                        <p class="card-price"><strong>Price:</strong> <%= home.price %> Rs / Night</p>
+                        <p class="card-type"><strong>Rating:</strong> <%= home.rating %>⭐</p>
+
+                        <form action="/remove-fav/<%= home._id %>" method="POST" style="margin-top: 10px;">
+                            <button type="submit" class="btn btn-danger">Remove from Favourite 💔</button>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
