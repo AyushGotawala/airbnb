@@ -2,8 +2,6 @@
 
 **BlogNest** is a full-stack blogging platform where users can sign up, log in, and create, view, and manage blog posts. Built with **Node.js**, **Express**, **MongoDB**, and **EJS**, BlogNest offers a clean UI and a responsive experience.
 
-![BlogNest Screenshot](public/images/screenshot.png) <!-- Optional: Replace with a real screenshot path -->
-
 ---
 
 ## 🚀 Features
