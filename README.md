@@ -30,23 +30,6 @@
 
 ---
 
-## 📁 Folder Structure
-BlogNest/
-│
-├── controller/ # Route logic
-├── models/ # Mongoose models
-├── routes/ # Express routes
-├── utils/ # Helper functions (auth, validators)
-├── views/ # EJS templates
-├── public/ # Static assets (CSS, JS, images)
-├── app.js # Main server entry point
-├── .env # Environment variables
-└── package.json
-
-
-
----
-
 ## ⚙️ Getting Started
 
 ### 1. Clone the Repository
